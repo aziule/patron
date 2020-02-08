@@ -17,7 +17,7 @@ import (
 	"github.com/beatlabs/patron"
 	"github.com/beatlabs/patron/async"
 	"github.com/beatlabs/patron/async/amqp"
-	patronsns "github.com/beatlabs/patron/client/sns"
+	clientsns "github.com/beatlabs/patron/client/sns"
 	"github.com/beatlabs/patron/encoding/json"
 	"github.com/beatlabs/patron/examples"
 	"github.com/beatlabs/patron/log"
@@ -95,7 +95,7 @@ func main() {
 	}
 
 	// Create an SNS publisher
-	snsPub, err := patronsns.NewPublisher(snsAPI)
+	snsPub, err := clientsns.NewPublisher(snsAPI)
 	if err != nil {
 		log.Fatalf("failed to create sns publisher: %v", err)
 	}
@@ -181,10 +181,10 @@ func routeSNSTOpicToSQSQueue(snsAPI snsiface.SNSAPI, sqsQueueArn, topicArn strin
 type amqpComponent struct {
 	cmp         patron.Component
 	snsTopicArn string
-	snsPub      patronsns.Publisher
+	snsPub      clientsns.Publisher
 }
 
-func newAmqpComponent(url, queue, exchangeName, exchangeType string, bindings []string, snsTopicArn string, snsPub patronsns.Publisher) (*amqpComponent, error) {
+func newAmqpComponent(url, queue, exchangeName, exchangeType string, bindings []string, snsTopicArn string, snsPub clientsns.Publisher) (*amqpComponent, error) {
 	amqpCmp := amqpComponent{
 		snsTopicArn: snsTopicArn,
 		snsPub:      snsPub,
@@ -226,7 +226,7 @@ func (ac *amqpComponent) Process(msg async.Message) error {
 		return err
 	}
 
-	snsMsg, err := patronsns.NewMessageBuilder().
+	snsMsg, err := clientsns.NewMessageBuilder().
 		Message(string(payload)).
 		TopicArn(ac.snsTopicArn).
 		Build()
