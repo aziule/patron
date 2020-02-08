@@ -40,7 +40,7 @@ var patronPackages = map[string]component{
 		oo = append(oo, patron.Routes(routes))`,
 	},
 	"kafka": {
-		Import: "\"github.com/beatlabs/patron/async\"\n\t\"github.com/beatlabs/patron/async/kafka\"",
+		Import: "\"github.com/beatlabs/patron/component/async\"\n\t\"github.com/beatlabs/patron/component/async/kafka\"",
 		Code: `kafkaCf, err := kafka.New(name, "json.Type", "TOPIC", "GROUP", []string{"BROKER"})
 		if err != nil {
 			log.Fatalf("failed to create kafka consumer factory: %v", err)
@@ -54,7 +54,7 @@ var patronPackages = map[string]component{
 		oo = append(oo, patron.Components(kafkaCmp))`,
 	},
 	"amqp": {
-		Import: "\"github.com/beatlabs/patron/async\"\n\t\"github.com/beatlabs/patron/async/amqp\"",
+		Import: "\"github.com/beatlabs/patron/component/async\"\n\t\"github.com/beatlabs/patron/component/async/amqp\"",
 		Code: `amqpCf, err := amqp.New("URL", "QUEUE", "EXCHANGE")
 		if err != nil {
 			log.Fatalf("failed to create amqp consumer factory: %v", err)

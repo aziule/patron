@@ -13,8 +13,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/aws/aws-sdk-go/service/sqs/sqsiface"
 	"github.com/beatlabs/patron"
-	"github.com/beatlabs/patron/async"
-	patronsqs "github.com/beatlabs/patron/async/sqs"
+	"github.com/beatlabs/patron/component/async"
+	patronsqs "github.com/beatlabs/patron/component/async/sqs"
 	"github.com/beatlabs/patron/log"
 )
 
