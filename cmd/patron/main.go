@@ -29,7 +29,7 @@ type genData struct {
 
 var patronPackages = map[string]component{
 	"http": {
-		Import: "\"github.com/beatlabs/patron/sync\"\n\tsync_http \"github.com/beatlabs/patron/sync/http\"\n\t\"context\"\n\t\"net/http\"",
+		Import: "\"github.com/beatlabs/patron/component\"\n\tsync_http \"github.com/beatlabs/patron/component/http\"\n\t\"context\"\n\t\"net/http\"",
 		Code: `// Set up HTTP routes
 		routes := make([]sync_http.Route, 0)
 		// Append a GET route

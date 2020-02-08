@@ -3,8 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/beatlabs/patron/sync"
-	"github.com/beatlabs/patron/sync/http/auth"
+	"github.com/beatlabs/patron/component/http/auth"
 )
 
 // Route definition of a HTTP route.
@@ -18,42 +17,42 @@ type Route struct {
 }
 
 // NewGetRoute creates a new GET route from a generic handler.
-func NewGetRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewGetRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodGet, pr, trace, nil, mm...)
 }
 
 // NewPostRoute creates a new POST route from a generic handler.
-func NewPostRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewPostRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPost, pr, trace, nil, mm...)
 }
 
 // NewPutRoute creates a new PUT route from a generic handler.
-func NewPutRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewPutRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPut, pr, trace, nil, mm...)
 }
 
 // NewDeleteRoute creates a new DELETE route from a generic handler.
-func NewDeleteRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewDeleteRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodDelete, pr, trace, nil, mm...)
 }
 
 // NewPatchRoute creates a new PATCH route from a generic handler.
-func NewPatchRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewPatchRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPatch, pr, trace, nil, mm...)
 }
 
 // NewHeadRoute creates a new HEAD route from a generic handler.
-func NewHeadRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewHeadRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodHead, pr, trace, nil, mm...)
 }
 
 // NewOptionsRoute creates a new OPTIONS route from a generic handler.
-func NewOptionsRoute(p string, pr sync.ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
+func NewOptionsRoute(p string, pr ProcessorFunc, trace bool, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodOptions, pr, trace, nil, mm...)
 }
 
 // NewRoute creates a new route from a generic handler with auth capability.
-func NewRoute(p string, m string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewRoute(p string, m string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	var middlewares []MiddlewareFunc
 	if trace {
 		middlewares = append(middlewares, NewLoggingTracingMiddleware(p))
@@ -80,37 +79,37 @@ func NewRouteRaw(p string, m string, h http.HandlerFunc, trace bool, mm ...Middl
 }
 
 // NewAuthGetRoute creates a new GET route from a generic handler with auth capability.
-func NewAuthGetRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthGetRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodGet, pr, trace, auth, mm...)
 }
 
 // NewAuthPostRoute creates a new POST route from a generic handler with auth capability.
-func NewAuthPostRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthPostRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPost, pr, trace, auth, mm...)
 }
 
 // NewAuthPutRoute creates a new PUT route from a generic handler with auth capability.
-func NewAuthPutRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthPutRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPut, pr, trace, auth, mm...)
 }
 
 // NewAuthDeleteRoute creates a new DELETE route from a generic handler with auth capability.
-func NewAuthDeleteRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthDeleteRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodDelete, pr, trace, auth, mm...)
 }
 
 // NewAuthPatchRoute creates a new PATCH route from a generic handler with auth capability.
-func NewAuthPatchRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthPatchRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodPatch, pr, trace, auth, mm...)
 }
 
 // NewAuthHeadRoute creates a new HEAD route from a generic handler with auth capability.
-func NewAuthHeadRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthHeadRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodHead, pr, trace, auth, mm...)
 }
 
 // NewAuthOptionsRoute creates a new OPTIONS route from a generic handler with auth capability.
-func NewAuthOptionsRoute(p string, pr sync.ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
+func NewAuthOptionsRoute(p string, pr ProcessorFunc, trace bool, auth auth.Authenticator, mm ...MiddlewareFunc) Route {
 	return NewRoute(p, http.MethodOptions, pr, trace, auth, mm...)
 }
 

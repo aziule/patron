@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"testing"
 
-	phttp "github.com/beatlabs/patron/sync/http"
+	phttp "github.com/beatlabs/patron/component/http"
 	"github.com/stretchr/testify/assert"
 )
 

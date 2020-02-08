@@ -3,8 +3,8 @@ package patron
 import (
 	"errors"
 
+	"github.com/beatlabs/patron/component/http"
 	"github.com/beatlabs/patron/log"
-	"github.com/beatlabs/patron/sync/http"
 )
 
 // OptionFunc definition for configuring the service in a functional way.
