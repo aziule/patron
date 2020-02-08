@@ -7,6 +7,7 @@ The processing will be kicked of by sending a request to the HTTP component. The
 - RabbitMQ consumer -> kafka publish
 - Kafka consumer -> log to stdout
 - Publish message to AWS SNS -> Consume it with AWS SQS
+//TODO: missing stuff
 
 Since tracing instrumentation is in place we can observer the flow in jaeger.
 
